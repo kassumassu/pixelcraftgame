@@ -1,0 +1,6 @@
+Movement: wasd  
+Jump: space
+Place a block: t
+Destroy a block: y 
+Run speed: o 
+Normal speed: p 
