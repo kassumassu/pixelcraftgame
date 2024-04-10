@@ -13,19 +13,33 @@ class Voxel(Button):
             color=color.green, 
             texture="grass", 
             collider="box", 
-            position=position
+            position=position, 
+            highlight_color=color.lime
         ) 
     def input(self, key): 
         if self.hovered: 
             if key=="t": 
+                arm.position=(0.6, -0.5)
                 voxel = Voxel(self.position + mouse.normal) 
-            if key=="y": 
+            elif key=="y": 
+                arm.position=(0.6, -0.5)
                 destroy(self) 
+            else: 
+                arm.position=(0.75, -0.4)
         if key=="o": 
             player.speed=15 
         if key=="p": 
-            player.speed=10 
+            player.speed=10
 for x in range(30): 
     for z in range(30): 
         voxel = Voxel(position=(x,0,z)) 
+arm=Entity(
+    model="cube", 
+    parent=camera.ui,  
+    scale=(0.2, 0.2, 0.5), 
+    position=(0.75, -0.4), 
+    rotation=(-150, -5, 6), 
+    texture="grass", 
+    color=color.green
+)
 app.run()
