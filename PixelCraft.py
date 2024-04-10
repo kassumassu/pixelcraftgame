@@ -33,8 +33,8 @@ class Voxel(Button):
             player.speed=15 
         if key=="p": 
             player.speed=10
-for x in range(-10, 10): 
-    for z in range(-10, 10): 
+for x in range(-20, 20): 
+    for z in range(-20, 20): 
         height=noise([x * 0.02, z * 0.02])
         height=math.floor(height * 7.5)
         voxel = Voxel(position=(x,height,z)) 
