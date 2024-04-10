@@ -1,6 +1,9 @@
 from ursina import * 
 from ursina.prefabs.first_person_controller import * 
 from ursina.prefabs.health_bar import * 
+import random 
+from perlin_noise import PerlinNoise 
+noise = PerlinNoise(octaves=3, seed=random.randint(1, 1000)) 
 app = Ursina()
 window.fullscreen=True 
 Sky(texture="sky_sunset") 
@@ -30,9 +33,11 @@ class Voxel(Button):
             player.speed=15 
         if key=="p": 
             player.speed=10
-for x in range(30): 
-    for z in range(30): 
-        voxel = Voxel(position=(x,0,z)) 
+for x in range(-10, 10): 
+    for z in range(-10, 10): 
+        height=noise([x * 0.02, z * 0.02])
+        height=math.floor(height * 7.5)
+        voxel = Voxel(position=(x,height,z)) 
 arm=Entity(
     model="cube", 
     parent=camera.ui,  
