@@ -7,7 +7,7 @@ noise = PerlinNoise(octaves=3, seed=random.randint(1, 1000))
 app = Ursina()
 window.fullscreen=True 
 Sky(texture="sky_sunset") 
-player=FirstPersonController(collider='box', speed=10) 
+player=FirstPersonController(collider='box', speed=10, y=100) 
 class Voxel(Button): 
     def __init__(self, position=(0,0,0)): 
         super().__init__(
@@ -33,11 +33,13 @@ class Voxel(Button):
             player.speed=15 
         if key=="p": 
             player.speed=10
-for x in range(-20, 20): 
-    for z in range(-20, 20): 
+min_height = -4 
+for x in range(-10, 10): 
+    for z in range(-10, 10): 
         height=noise([x * 0.02, z * 0.02])
         height=math.floor(height * 7.5)
-        voxel = Voxel(position=(x,height,z)) 
+        for y in range(height, min_height - 1, -1): 
+            voxel = Voxel(position=(x,y + min_height,z))
 arm=Entity(
     model="cube", 
     parent=camera.ui,  
