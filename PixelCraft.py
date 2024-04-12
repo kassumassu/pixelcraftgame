@@ -11,7 +11,10 @@ player = FirstPersonController(collider='box', speed=10, mouse_sensitivity=Vec2(
                                position=(0,100,0)) 
 block_textures = {
     "grass" : load_texture("grass"),  
-    "brick" : load_texture("brick")
+    "brick" : load_texture("brick"), 
+    "stone" : load_texture("stone.jpeg"), 
+    "diamond" : load_texture("diamond.jpg"), 
+    "gold" : load_texture("gold.jpg")
 } 
 class Block(Entity): 
     def __init__(self, position, block_type): 
@@ -51,6 +54,12 @@ def input(key):
         selected_block = "grass"
     if key=="2": 
         selected_block = "brick" 
+    if key=="3":
+        selected_block = "stone" 
+    if key=="4": 
+        selected_block = "diamond" 
+    if key=="5": 
+        selected_block = "gold"
 def update(): 
     mini_block.texture=block_textures.get(selected_block)
 app.run()
